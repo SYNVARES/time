@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>วันที่และเวลาเรียลไทม์</title>
+  <style>
+    body {
+      font-family: 'jasmineUPC', sans-serif;
+      background-color: transparent;
+      color: #e19600;
+      text-align: left;
+      padding-top: 0%;
+      font-size: 24;
+    }
+    #date, #clock {
+      margin: 0px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="date">--</div>
+  <div id="clock">--:--:--</div>
+
+  <script>
+    const dayNames = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'];
+    const monthNames = [
+      'มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน',
+      'กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'
+    ];
+
+    function updateDateTime() {
+      const now = new Date();
+      const day = dayNames[now.getDay()];
+      const date = now.getDate();
+      const month = monthNames[now.getMonth()];
+      const year = now.getFullYear() + 543; // พ.ศ.
+
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      document.getElementById('date').textContent = 
+        `วัน${day} ที่ ${date} ${month} ${year}`;
+      document.getElementById('clock').textContent = 
+        `${hours}:${minutes}:${seconds}`;
+    }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+  </script>
+</body>
+</html>
